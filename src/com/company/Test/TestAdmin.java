@@ -3,6 +3,7 @@ package com.company.Test;
 import com.company.dao.AdminDao;
 import com.company.dao.Impl.AdminDaoImpl;
 import com.company.domain.Admin;
+import com.company.view.Impl.AdminViewImpl;
 
 import java.util.List;
 
@@ -23,7 +24,8 @@ public class TestAdmin {
 //        Admin admin2 = new Admin(11, null, "555");
 //        adminDao.update(admin2);
 
-        adminDao.delete(11);
+//        adminDao.delete(11);
+
 
     }
 }
