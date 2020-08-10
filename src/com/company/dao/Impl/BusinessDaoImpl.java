@@ -275,24 +275,19 @@ public class BusinessDaoImpl implements BusinessDao {
 }
 
     @Override
-    public int updatePassword(Business business) {
+    public int updateBusinessByPassword(Integer businessId,String password) {
         int result = 0;
-        try{
-
-            String sql = "update business set password = ?  where  businessId = ?";
-
+        String sql = "update business set password=? where businessId=?";
+        try {
             conn = JDBCUtils.getConnection();
             pstmt = conn.prepareStatement(sql);
-            System.out.println(sql);
-            pstmt.setString(1, business.getPassword());
-            pstmt.setInt(2, business.getBusinessId());
-
+            pstmt.setString(1, password);
+            pstmt.setInt(2, businessId);
             result = pstmt.executeUpdate();
-
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
-            JDBCUtils.close(rs, pstmt, conn);
+        } finally {
+            JDBCUtils.close(null, pstmt, conn);
         }
         return result;
     }

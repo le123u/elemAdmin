@@ -160,29 +160,31 @@ public class BusinessViewImpl implements BusinessView {
     }
 
     @Override
-    public void updatePassword(Integer businessId) {
-        String s = null;
-        String s1 = null;
-        String s2 = null;
-        BusinessDaoImpl dao = new BusinessDaoImpl();
-        Business businessByBusinessId = dao.getBusinessByBusinessId(businessId);
-        System.out.println("请输入原来的密码：");
-        s = input.next();
-        if (s.equals(businessByBusinessId.getPassword())){
-            System.out.println("请输入新的密码：");
-            s1 = input.next();
-            System.out.println("请再次输入新密码：");
-            s2 = input.next();
-            if (s2.equals(s1)){
-                updatePassword(businessId);
-                System.out.println("修改成功");
-            }else{
-                System.out.println("修改失败");
+    public void updateBusinessByPassword(Integer businessId) {
+        BusinessDao dao = new BusinessDaoImpl();
+        Business business = dao.getBusinessByBusinessId(businessId);
+
+        System.out.println("\n请输入旧密码：");
+        String oldPass = input.next();
+        System.out.println("\n请输入新密码：");
+        String password = input.next();
+        System.out.println("\n请再次输入新密码：");
+        String beginPassword = input.next();
+
+        if(!business.getPassword().equals(oldPass)) {
+            System.out.println("\n旧密码输入错误！");
+        }else if(!password.equals(beginPassword)) {
+            System.out.println("\n两次输入密码不一致！");
+        }else {
+            int result = dao.updateBusinessByPassword(businessId, password);
+            if(result>0) {
+                System.out.println("\n修改密码成功！");
+            }else {
+                System.out.println("\n修改密码失败！");
             }
-        }else{
-            System.out.println("请输入正确的原始密码");
         }
     }
+
 
 }
 

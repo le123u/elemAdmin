@@ -18,5 +18,5 @@ public interface BusinessView {
 
     public void updateBusinessInfo(Integer businessId);
 
-    public void updatePassword(Integer businessId);
+    public void updateBusinessByPassword(Integer businessId);
 }

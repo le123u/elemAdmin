@@ -43,7 +43,7 @@ public class ElmBusiness {
                         businessView.updateBusinessInfo(business.getBusinessId());
                         break;
                     case 3:
-                       businessView.updatePassword(business.getBusinessId());
+                       businessView.updateBusinessByPassword(business.getBusinessId());
                         break;
                     case 4:
                         FoodViewImpl foodView = new FoodViewImpl();
