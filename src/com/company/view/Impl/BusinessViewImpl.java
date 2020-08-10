@@ -6,6 +6,7 @@ import com.company.domain.Business;
 import com.company.view.BusinessView;
 import javafx.application.Preloader;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
@@ -94,5 +95,94 @@ public class BusinessViewImpl implements BusinessView {
 
 
     }
+
+    @Override
+    public Business login() {
+        System.out.println("请输入商家编号：");
+        Integer businessId = input.nextInt();
+        System.out.println("请输入密码：");
+        String password = input.next();
+
+        BusinessDaoImpl dao = new BusinessDaoImpl();
+        return dao.getBusinessByNameByPass(businessId,password);
+    }
+
+    @Override
+    public void showBusinessInfo(Integer businessId) {
+
+        BusinessDaoImpl dao = new BusinessDaoImpl();
+        Business businessByBusinessId = dao.getBusinessByBusinessId(businessId);
+        System.out.println(businessByBusinessId);
+
+    }
+
+    @Override
+    public void updateBusinessInfo(Integer businessId) {
+        BusinessDaoImpl dao = new BusinessDaoImpl();
+        Business business = dao.getBusinessByBusinessId(businessId);
+        // 先显示一遍商家信息 方便查看
+        String inputStr = "";
+        String iputStr2 ="";
+        String iputStr3 ="";
+        String iputStr4 ="";
+        String iputStr5 ="";
+        System.out.println(business);
+        System.out.println("是否修改商家信息（y/n）");
+        inputStr = input.next();
+        if (inputStr.equals("y")){
+            System.out.println("请输入新的商家名称");
+            business.setBusinessName(input.next());
+        }
+        System.out.println("是否修改商家描述（y/n）");
+        iputStr3 = input.next();
+        if (iputStr3.equals("y")){
+            System.out.println("请输入新的商家描述");
+            business.setBusinessExplain(input.next());
+        }
+        System.out.println("是否修改起送价格（y/n）");
+        iputStr4 = input.next();
+        if (iputStr4.equals("y")){
+            System.out.println("请输入新的起送价格");
+//            BigDecimal bigDecimal = new BigDecimal();
+            business.setStarPrice(input.nextBigDecimal());
+        }
+        System.out.println("是否修改配送费（y/n）");
+        iputStr5 = input.next();
+        if (iputStr5.equals("y")){
+            System.out.println("请输入新的配送费");
+            business.setDeliveryPrice(input.nextBigDecimal());
+        }
+        int res = dao.updateBusiness(business);
+        if(res > 0)
+            System.out.println("修改商家信息成功");
+        else
+            System.out.println("修改商家信息失败");
+    }
+
+    @Override
+    public void updatePassword(Integer businessId) {
+        String s = null;
+        String s1 = null;
+        String s2 = null;
+        BusinessDaoImpl dao = new BusinessDaoImpl();
+        Business businessByBusinessId = dao.getBusinessByBusinessId(businessId);
+        System.out.println("请输入原来的密码：");
+        s = input.next();
+        if (s.equals(businessByBusinessId.getPassword())){
+            System.out.println("请输入新的密码：");
+            s1 = input.next();
+            System.out.println("请再次输入新密码：");
+            s2 = input.next();
+            if (s2.equals(s1)){
+                updatePassword(businessId);
+                System.out.println("修改成功");
+            }else{
+                System.out.println("修改失败");
+            }
+        }else{
+            System.out.println("请输入正确的原始密码");
+        }
+    }
+
 }
 

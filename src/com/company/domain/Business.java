@@ -82,14 +82,11 @@ public class Business {
 
     @Override
     public String toString() {
-        return "Business{" +
-                "businessId=" + businessId +
-                ", password='" + password + '\'' +
-                ", businessName='" + businessName + '\'' +
-                ", businessAddress='" + businessAddress + '\'' +
-                ", businessExplain='" + businessExplain + '\'' +
-                ", starPrice=" + starPrice +
-                ", deliveryPrice=" + deliveryPrice +
-                '}';
+        return "\n商家编号："+this.businessId+
+                "\n商家名称："+this.businessName+
+                "\n商家地址："+this.businessAddress+
+                "\n商家介绍："+this.businessExplain+
+                "\n起送费："+this.starPrice+
+                "\n配送费："+this.deliveryPrice;
     }
 }
