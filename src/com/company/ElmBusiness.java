@@ -50,7 +50,7 @@ public class ElmBusiness {
                         int menuA = 0;
 //                        System.out.println("欢迎来到饿了么商家管理系统");
                         while(menuA != 5){
-                            System.out.println("========= 二级标题1.所有食物列表=2.搜索食物=3.新建食物=4.删除食物=5.退出系统 =========");
+                            System.out.println("========= 二级标题1.所有食物列表=2.搜索食物=3.新建食物=4.删除食物=5.返回一级菜单 =========");
                             System.out.println("请选择相应的编号");
                             menuA = input.nextInt();
 
