@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class FoodViewImpl implements FoodView {
     @Override
-    public void listFoodAll() {
+    public void listFoodAll(Integer businessId) {
         FoodDaoImpl foodDao = new FoodDaoImpl();
-        List<Food> list = foodDao.findAll(null, null);
+        List<Food> list = foodDao.findAll(businessId);
         System.out.println("食物编号\t食物名称\t食物种类\t食物价格\t商家编号");
         for(Food li:list){
             System.out.println(li.getFoodId()+ "\t" + li.getFoodName()+"\t"+
@@ -21,8 +21,9 @@ public class FoodViewImpl implements FoodView {
     }
 
     private Scanner input = new Scanner(System.in);
+
     @Override
-    public void listFoodSave() {
+    public void listFoodSave(Integer businessId) {
         String s = "";
         String foodName = "";
         String foodExplain = "";
@@ -39,9 +40,9 @@ public class FoodViewImpl implements FoodView {
             foodExplain = input.next();
         }
         FoodDaoImpl foodDao = new FoodDaoImpl();
-        List<Food> list = foodDao.findAll(foodName, foodExplain);
+        List<Food> list1 = foodDao.findAll(businessId);
         System.out.println("食物编号\t食物名称\t食物种类\t食物价格\t商家编号");
-        for(Food li:list){
+        for(Food li:list1){
             System.out.println(li.getFoodId()+ "\t" + li.getFoodName()+"\t"+
                     li.getFoodExplain()+"\t"+li.getFoodPrice()+"\t"+
                     li.getBusinessId());
@@ -50,7 +51,7 @@ public class FoodViewImpl implements FoodView {
     }
 
     @Override
-    public void saveFoodAll() {
+    public void saveFoodAll(Integer businessId) {
         System.out.println("请输入要增加的食物名称：");
         String foodName = input.next();
         FoodDaoImpl foodDao = new FoodDaoImpl();
@@ -65,7 +66,7 @@ public class FoodViewImpl implements FoodView {
     }
 
     @Override
-    public void deleteFoodAll() {
+    public void deleteFoodAll(Integer businessId) {
         System.out.println("请输入要删除的食物编号");
         int foodId = input.nextInt();
         System.out.println("确定要删除吗（y/s）");

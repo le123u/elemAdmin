@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FoodDao {
 
-    public List<Food> findAll(String foodName,String foodExplain);
+    public List<Food> findAll(Integer businessId);
 
     public Integer save(String foodName);
 

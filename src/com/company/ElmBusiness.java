@@ -56,16 +56,16 @@ public class ElmBusiness {
 
                             switch (menuA){
                                 case 1:
-                                    foodView.listFoodAll();
+                                    foodView.listFoodAll(business.getBusinessId());
                                     break;
                                 case 2:
-                                    foodView.listFoodSave();
+                                    foodView.listFoodSave(business.getBusinessId());
                                     break;
                                 case 3:
-                                    foodView.saveFoodAll();
+                                    foodView.saveFoodAll(business.getBusinessId());
                                     break;
                                 case 4:
-                                    foodView.deleteFoodAll();
+                                    foodView.deleteFoodAll(business.getBusinessId());
                                     break;
                                 case 5:
                                     System.out.println("========= 欢迎下次光临饿了么系统 =========");

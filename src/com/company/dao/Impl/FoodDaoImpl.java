@@ -17,24 +17,14 @@ public class FoodDaoImpl implements FoodDao {
     private PreparedStatement pstmt =null;
     private ResultSet rs =null;
     @Override
-    public List<Food> findAll(String foodName,String foodExplain) {
-        StringBuffer sql = new StringBuffer("select * from food where 1 = 1");
-        if (foodName != null && !foodName.equals("")) {
-
-            sql.append(" and foodName like '%").append(foodName).append("%' ");
-            System.out.println(sql);
-        }
-        if (foodExplain != null && !foodExplain.equals("")) {
-
-            sql.append(" and foodExplain like '%").append(foodExplain).append("%' ");
-            System.out.println(sql);
-        }
-
+    public List<Food> findAll(Integer businessId) {
+        String sql ="select * from food where businessId = ?";
         ArrayList<Food> foods = null;
         try{
 
             conn = JDBCUtils.getConnection();
-            pstmt = conn.prepareStatement(sql.toString());
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,businessId);
             foods = new ArrayList<>();
             rs = pstmt.executeQuery();
             while (rs.next()){

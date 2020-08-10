@@ -2,12 +2,12 @@ package com.company.view;
 
 public interface FoodView {
 
-    public void listFoodAll();
+    public void listFoodAll(Integer businessId);
 
-    public void listFoodSave();
+    public void listFoodSave(Integer businessId);
 
-    public void saveFoodAll();
+    public void saveFoodAll(Integer businessId);
 
-    public void deleteFoodAll();
+    public void deleteFoodAll(Integer businessId);
 
 }
